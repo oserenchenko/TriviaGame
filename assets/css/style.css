@@ -1,3 +1,7 @@
 .multipleChoiceAnswer {
   display: block;
 }
+
+.answerImage {
+  width: 400px;
+}
