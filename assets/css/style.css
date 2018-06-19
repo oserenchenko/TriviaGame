@@ -1,18 +1,40 @@
 body {
   font-family: 'Gentium Book Basic', serif;
   font-size: 20px;
+  background-color: rgb(122, 123, 124);
 }
 
 #splashScreen {
   text-align: center;
-}
-
-.header {
   background-image: url(../images/mountain_range.jpg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center top;
+  margin-top: 80px;
+  height: 600px
+}
+
+h1 {
+  font-size: 100px;
   font-family: 'Alfa Slab One', cursive;
-  height: 500px;
+  padding-top: 30px;
+}
+
+h2 {
+  font-size: 50px;
+  color: rgb(238, 231, 231);;
+}
+
+p {
+  font-size: 20px;
+  color: rgb(238, 231, 231);
+  padding-right: 150px;
+  padding-left: 150px;
+}
+
+#start {
+  background-color: rgb(238, 231, 231);
+  width: 100px;
 }
 
 .multipleChoiceAnswer {
