@@ -1,3 +1,20 @@
+body {
+  font-family: 'Gentium Book Basic', serif;
+  font-size: 20px;
+}
+
+#splashScreen {
+  text-align: center;
+}
+
+.header {
+  background-image: url(../images/mountain_range.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  font-family: 'Alfa Slab One', cursive;
+  height: 500px;
+}
+
 .multipleChoiceAnswer {
   display: block;
 }

@@ -1,4 +1,7 @@
 var intervalId;
+var correctCounter = 0;
+var incorrectCounter = 0;
+var unansweredCounter = 0;
 
 var triviaQuestions = [{
     "q": "What is Denver's oldest block?",
@@ -11,9 +14,10 @@ var triviaQuestions = [{
   {
     "q": "Back in 1906, just 25 years after opening, an arch is placed in front of Denver's Union Station featuring what word(s)?",
     "a1": "Mile High",
-    "a2": "Welcome",
+    "a2": "Denver",
     "aCorrect": "Mizpah",
-    "a3": "Bienvenue"
+    "a3": "Bienvenue",
+    "image": "assets/images/mizpah.jpg"
   }
 ];
 
@@ -29,6 +33,9 @@ var triviaGame = {
   },
 
   "newRound": function () {
+    $("#multipleChoice").empty();
+    $("#timer").text("Time Remaining: 15 seconds");
+    triviaGame.runTimer();
     $("#question").text(triviaQuestions[triviaGame.questionIndex].q);
     var questionProperties = Object.keys(triviaQuestions[triviaGame.questionIndex]);
     for (var i = 0; i < questionProperties.length; i++) {
@@ -40,7 +47,6 @@ var triviaGame = {
         $("#multipleChoice").append(newButton);
       }
     }
-    triviaGame.runTimer();
     $(".multipleChoiceAnswer").on("click", function () {
       if (this.value == "aCorrect") {
         console.log("you guessed correctly!");
@@ -65,35 +71,65 @@ var triviaGame = {
     triviaGame.timer--;
     $("#timer").text("Time Remaining: " + triviaGame.timer + " seconds");
     if (triviaGame.timer === 0) {
+      unansweredCounter++;
       clearInterval(intervalId);
-      console.log("Time Up!");
+      $("#multipleChoice").empty();
+      $("#timer").empty();
+      $("#multipleChoice").append("<h4>Out of time! The answer is: " + triviaQuestions[triviaGame.questionIndex].aCorrect + "</h4>");
+      $("#multipleChoice").append("<img class='answerImage' src=" + triviaQuestions[triviaGame.questionIndex].image + ">");
+      triviaGame.questionIndex++;
+      setTimeout(triviaGame.checkRound, 5000);
+      triviaGame.timer = 15;
     }
   },
 
-  "correctGuess": function() {
+  "correctGuess": function () {
+    correctCounter++;
     $("#multipleChoice").empty();
     $("#timer").empty();
-    $("#multipleChoice").append("<h4>Correct!</h4>");
+    $("#multipleChoice").append("<h4>Correct! " + triviaQuestions[triviaGame.questionIndex].aCorrect + "!</h4>");
     $("#multipleChoice").append("<img class='answerImage' src=" + triviaQuestions[triviaGame.questionIndex].image + ">");
+    triviaGame.questionIndex++;
+    setTimeout(triviaGame.checkRound, 5000);
   },
 
-  "incorrectGuess": function() {
+  "incorrectGuess": function () {
+    incorrectCounter++
     $("#multipleChoice").empty();
     $("#timer").empty();
-    $("#multipleChoice").append("<h4>Incorrect! It's " + triviaQuestions[triviaGame.questionIndex].aCorrect +  "</h4>");
+    $("#multipleChoice").append("<h4>Incorrect! It's " + triviaQuestions[triviaGame.questionIndex].aCorrect + "</h4>");
     $("#multipleChoice").append("<img class='answerImage' src=" + triviaQuestions[triviaGame.questionIndex].image + ">");
+    triviaGame.questionIndex++;
+    setTimeout(triviaGame.checkRound, 5000);
   },
+
+  "checkRound": function () {
+    if (triviaGame.questionIndex < triviaQuestions.length) {
+      triviaGame.newRound();
+    } else {
+      $("#question").empty();
+      $("#multipleChoice").empty();
+      $("#timer").empty();
+      $("#multipleChoice").append("<h4>All Done! Here's how you did:</h4>");
+      $("#multipleChoice").append("<h5>Correct Answers: " + correctCounter + "<!h5>");
+      $("#multipleChoice").append("<h5>Incorrect Answers: " + incorrectCounter + "<!h5>");
+      $("#multipleChoice").append("<h5>Unanswered: " + unansweredCounter + "<!h5>");
+      $("#timer").append("<button class='playAgain'>Play Again</button>")
+      $(".playAgain").on("click", function() {
+        triviaGame.questionIndex = 0;
+        triviaGame.newRound();
+        correctCounter = 0;
+        incorrectCounter = 0;
+        unansweredCounter = 0;
+      })
+
+    }
+  },
+
 };
 
 
 //on click events
 $("document").ready(function () {
   $("#start").on("click", triviaGame.startGame);
-  // $(".multipleChoiceAnswer").on("click", function() {
-  //   console.log(true);
-  //   if (this.value == "aCorrect") {
-  //     console.log("you guessed correctly!");
-  //   }
-  // })
-
 })
