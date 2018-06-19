@@ -42,7 +42,7 @@ var triviaGame = {
       if (questionProperties[i].startsWith("a")) {
         var newButton = $("<button>");
         newButton.text(triviaQuestions[triviaGame.questionIndex][questionProperties[i]]);
-        newButton.addClass("multipleChoiceAnswer");
+        newButton.addClass("multipleChoiceAnswer btn btn-light");
         newButton.val(questionProperties[i])
         $("#multipleChoice").append(newButton);
       }
