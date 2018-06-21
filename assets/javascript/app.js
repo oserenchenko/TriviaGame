@@ -12,13 +12,59 @@ var triviaQuestions = [{
     "image": "assets/images/larimer_square.jpg"
   },
   {
-    "q": "Back in 1906, just 25 years after opening, an arch is placed in front of Denver's Union Station featuring what word(s)?",
+    "q": "In 1906 an arch is placed in front of Denver's Union Station featuring the following word(s):",
     "a1": "Mile High",
     "a2": "Denver",
     "aCorrect": "Mizpah",
     "a3": "Bienvenue",
     "image": "assets/images/mizpah.jpg"
-  }
+  },
+  {
+    "q": "The DIA is the largest airport in the U.S.",
+    "aCorrect": "True",
+    "a1": "False",
+    "image": "assets/images/dia.jpg"
+  },
+  {
+    "q": "The inside of the top of Denver's Capitol uses the entire world's supply of which stone?",
+    "a1": "Boulder Opal",
+    "aCorrect": "Colorado Rose Onyx",
+    "a2": "Almandine Garnet",
+    "a3": "Blue Quartz",
+    "image": "assets/images/capitol.jpg"
+  },
+  {
+    "q": "Which beer company was founded in Golden, CO?",
+    "a1": "Budweiser",
+    "a2": "Heinken",
+    "a3": "Kokopelli",
+    "aCorrect": "Coors",
+    "image": "assets/images/coors.jpg"
+  },
+  {
+    "q": "Which peak is highest in Colorado?",
+    "aCorrect": "Mount Evans",
+    "a1": "Longs Peak",
+    "a2": "Mount Elbert",
+    "a3": "Mount Massive",
+    "image": "assets/images/evans.jpg"
+  },
+  {
+    "q": "Which animal is the large blue scultpture looking into the lobby of the Convention Center?",
+    "a1": "Lion",
+    "a2": "Monkey",
+    "aCorrect": "Bear",
+    "a3": "Elk",
+    "image": "assets/images/blue_bear.jpg"
+  },
+  {
+    "q": "Lakeside, the small, historical amusement park Northwest of Denver, was opened in:",
+    "a1": "1920",
+    "a2": "1954",
+    "a3": "1901",
+    "aCorrect": "1908",
+    "image": "assets/images/lakeside.jpg"
+  },
 ];
 
 var triviaGame = {
@@ -64,6 +110,7 @@ var triviaGame = {
   "runTimer": function () {
     if (triviaGame.timer > 0) {
       clearInterval(intervalId);
+      triviaGame.timer = 15;
       intervalId = setInterval(triviaGame.decrement, 1000);
     }
   },
@@ -82,7 +129,6 @@ var triviaGame = {
       $("#mainGame").css("background-image", "none");
       triviaGame.questionIndex++;
       setTimeout(triviaGame.checkRound, 5000);
-      triviaGame.timer = 15;
     }
   },
 
