@@ -34,6 +34,7 @@ var triviaGame = {
 
   "newRound": function () {
     $("#multipleChoice").empty();
+    $("#mainGame").css("background-image", "url(assets/images/denver_skyline.jpg)");
     $("#timer").text("Time Remaining: 15 seconds");
     triviaGame.runTimer();
     $("#question").text(triviaQuestions[triviaGame.questionIndex].q);
@@ -73,10 +74,12 @@ var triviaGame = {
     if (triviaGame.timer === 0) {
       unansweredCounter++;
       clearInterval(intervalId);
+      $("#question").empty();
       $("#multipleChoice").empty();
       $("#timer").empty();
-      $("#multipleChoice").append("<h4>Out of time! The answer is: " + triviaQuestions[triviaGame.questionIndex].aCorrect + "</h4>");
+      $("#multipleChoice").append("<h4 class='feedback'>Out of time! The answer is: " + triviaQuestions[triviaGame.questionIndex].aCorrect + "</h4>");
       $("#multipleChoice").append("<img class='answerImage' src=" + triviaQuestions[triviaGame.questionIndex].image + ">");
+      $("#mainGame").css("background-image", "none");
       triviaGame.questionIndex++;
       setTimeout(triviaGame.checkRound, 5000);
       triviaGame.timer = 15;
@@ -85,20 +88,24 @@ var triviaGame = {
 
   "correctGuess": function () {
     correctCounter++;
+    $("#question").empty();
     $("#multipleChoice").empty();
     $("#timer").empty();
-    $("#multipleChoice").append("<h4>Correct! " + triviaQuestions[triviaGame.questionIndex].aCorrect + "!</h4>");
+    $("#multipleChoice").append("<h4 class='feedback'>Correct! " + triviaQuestions[triviaGame.questionIndex].aCorrect + "!</h4>");
     $("#multipleChoice").append("<img class='answerImage' src=" + triviaQuestions[triviaGame.questionIndex].image + ">");
+    $("#mainGame").css("background-image", "none");
     triviaGame.questionIndex++;
     setTimeout(triviaGame.checkRound, 5000);
   },
 
   "incorrectGuess": function () {
     incorrectCounter++
+    $("#question").empty();
     $("#multipleChoice").empty();
     $("#timer").empty();
-    $("#multipleChoice").append("<h4>Incorrect! It's " + triviaQuestions[triviaGame.questionIndex].aCorrect + "</h4>");
+    $("#multipleChoice").append("<h4 class='feedback'>Incorrect! It's " + triviaQuestions[triviaGame.questionIndex].aCorrect + "</h4>");
     $("#multipleChoice").append("<img class='answerImage' src=" + triviaQuestions[triviaGame.questionIndex].image + ">");
+    $("#mainGame").css("background-image", "none");
     triviaGame.questionIndex++;
     setTimeout(triviaGame.checkRound, 5000);
   },
@@ -110,11 +117,11 @@ var triviaGame = {
       $("#question").empty();
       $("#multipleChoice").empty();
       $("#timer").empty();
-      $("#multipleChoice").append("<h4>All Done! Here's how you did:</h4>");
+      $("#multipleChoice").append("<h4 class='feedback'>All Done! Here's how you did:</h4>");
       $("#multipleChoice").append("<h5>Correct Answers: " + correctCounter + "<!h5>");
       $("#multipleChoice").append("<h5>Incorrect Answers: " + incorrectCounter + "<!h5>");
       $("#multipleChoice").append("<h5>Unanswered: " + unansweredCounter + "<!h5>");
-      $("#timer").append("<button class='playAgain'>Play Again</button>")
+      $("#timer").append("<button class='playAgain btn btn-light'>Play Again</button>")
       $(".playAgain").on("click", function() {
         triviaGame.questionIndex = 0;
         triviaGame.newRound();

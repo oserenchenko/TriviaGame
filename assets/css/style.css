@@ -1,23 +1,32 @@
 body {
   font-family: 'Gentium Book Basic', serif;
   font-size: 20px;
-  background-color: rgb(122, 123, 124);
+  background-color: rgb(238, 231, 231);
 }
 
 #splashScreen {
   text-align: center;
-  background-image: url(../images/mountain_range.jpg);
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  margin:auto;
+  background-image: url("../images/mountain_range.jpg");
+  background-size:cover;
+  background-attachment: fixed;
   background-repeat: no-repeat;
+  background-position: bottom center;
   background-size: cover;
-  background-position: center top;
-  margin-top: 80px;
-  height: 600px
+  display: block;
+  overflow: auto;
 }
 
 h1 {
   font-size: 100px;
   font-family: 'Alfa Slab One', cursive;
   padding-top: 30px;
+  margin-top: 80px;
 }
 
 h2 {
@@ -26,7 +35,7 @@ h2 {
 }
 
 p {
-  font-size: 20px;
+  font-size: 25px;
   color: rgb(238, 231, 231);
   padding-right: 150px;
   padding-left: 150px;
@@ -34,7 +43,15 @@ p {
 
 #start {
   background-color: rgb(238, 231, 231);
-  width: 100px;
+  width: 130px;
+  font-size: 25px;
+}
+
+.playAgain {
+  background-color: black;
+  color: white;
+  width: 130px;
+  font-size: 25px;
 }
 
 #game {
@@ -44,18 +61,24 @@ p {
 .heading {
   font-size: 70px;
   padding-top: 10px;
+  margin-top: 0px;
+}
+
+#multipleChoice {
+  margin-bottom: 40px;
 }
 
 .multipleChoiceAnswer {
   display: block;
   margin: 0 auto;
-  font-size: 20px;
+  font-size: 25px;
   margin-bottom: 10px;
   background-color: rgb(238, 231, 231);
+  width: 300px;
 }
 
 .answerImage {
-  width: 400px;
+  width: 600px;
 }
 
 #mainGame {
@@ -64,17 +87,41 @@ p {
   background-size: cover;
   background-position: center top;
   height: 600px;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 
 #question {
-  font-size: 50px;
+  font-size: 45px;
   color: rgb(238, 231, 231);
+  margin-bottom: 50px !important;
+  padding-top: 20px;
 }
 
 #timer {
   font-size: 30px;
   color: rgb(238, 231, 231);
+}
+
+.feedback {
+  margin-bottom: 20px;
+  font-size: 30px;
+}
+
+h5 {
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+
+#start:hover {
+  background-color: rgb(190, 184, 184);
+}
+
+.multipleChoiceAnswer:hover {
+  background-color: rgb(190, 184, 184);
+}
+
+.playAgain:hover {
+  background-color: white;
 }
 
 
