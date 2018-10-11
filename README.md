@@ -9,7 +9,7 @@ ______________
 ## Visit the deployed version of the Trivia Game
 [Trivia Game](https://oserenchenko.github.io/TriviaGame/)
 
-![homepage]()
+![homepage](denver_trivia.png)
 
 ______________
 ______________
