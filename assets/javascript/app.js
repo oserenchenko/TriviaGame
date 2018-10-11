@@ -1,8 +1,10 @@
+//defining global variables: the interval id for the timer, the counters for the number of correct, incorrect, and unanswered questions
 var intervalId;
 var correctCounter = 0;
 var incorrectCounter = 0;
 var unansweredCounter = 0;
 
+//trivia questions array that holds each questions as an object. Each question has q for question, aCorrect for the correct answer, a1-a3 for the other multiple choice options, and the image 
 var triviaQuestions = [{
     "q": "What is Denver's oldest block?",
     "aCorrect": "Larimer Square",
@@ -67,18 +69,25 @@ var triviaQuestions = [{
   },
 ];
 
+//trivia game object that is full of functions that run the entire trivia game
 var triviaGame = {
+  //question index starts at 0 and increases with every round
   "questionIndex": 0,
 
+  //timer variable, the user has 15 seconds to answer the question
   "timer": 15,
 
+  //the function that runs when the start button is clicked in the very beginning page, when the game is refreshed
   "startGame": function () {
+    //the splash screen is hidden, the game div is shown, and the new round function is run
     $("#splashScreen").hide();
     $("#game").show();
     triviaGame.newRound();
   },
 
+  //the new round function, runs with every round
   "newRound": function () {
+    //empties the multiple choice options from the previous round
     $("#multipleChoice").empty();
     $("#mainGame").css("background-image", "url(assets/images/denver_skyline.jpg)");
     $("#timer").text("Time Remaining: 15 seconds");
